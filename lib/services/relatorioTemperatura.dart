@@ -1,4 +1,5 @@
 import 'package:clima_comparador/models/dados_climatico_sp.dart';
+import 'package:statistics/statistics.dart';
 
 class processarDadosTemp {
   final List<DadoClimatico> dados;
@@ -8,23 +9,21 @@ class processarDadosTemp {
   List calcularMediaMensal() {
     List<double> mediasMensais = [];
 
-    for (int i = 0; i < 12; i++) {
-      double somaTemperatura = 0.0;
-      int contador = 0;
+    for (int mes = 0; mes < 12; mes++) {
+      List<double> listaMensal = [];
 
       for (var lista in dados.skip(1)) {
-        if (lista.mes == i + 1) {
+        if (lista.mes == mes + 1) {
           // Pula o cabeçalho
           var temp = double.tryParse(
             lista.temperatura.toString().replaceAll(',', '.'),
           ); // Troca vírgula por ponto se precisar
           if (temp == null) continue;
 
-          somaTemperatura += temp;
-          contador++;
+          listaMensal.add(temp);
         }
       }
-      mediasMensais.add(double.parse((somaTemperatura / contador).toStringAsFixed(2)));
+      mediasMensais.add(double.parse(listaMensal.mean.toStringAsFixed(2)));
     }
     return mediasMensais;
   }
