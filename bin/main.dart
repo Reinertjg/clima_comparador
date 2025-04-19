@@ -13,7 +13,7 @@ void main() async {
 
   for (int i = 1; i <= 12; i++) {
     final caminho = 'C:/CLIMA/SENSORES/SP_2024_$i.csv';
-    todosOsDados += await leitorDados.carregarDados(caminho);
+    todosOsDados += await LeitorDados.carregarDados(caminho);
   }
 
 
