@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:clima_comparador/services/leitura_dados.dart';
 import 'package:clima_comparador/models/dados_climatico_sp.dart';
-import 'package:clima_comparador/services/relatorioTemperatura.dart';
+import 'package:clima_comparador/services/relatorio_temperatura.dart';
 import 'package:clima_comparador/views/impressao_relatorio.dart';
 import 'package:clima_comparador/views/menu.dart';
 
@@ -17,10 +17,22 @@ void main() async {
   }
 
 
-  final processador = processarDadosTemp(todosOsDados);
+  final processador = ProcessarDadosTemp(todosOsDados);
+  final mediaAnualTemp = processador.calcularMediaAnual();
   final mediaMensalTemp = processador.calcularMediaMensal();
+  final maximaAnualTemp = processador.calcularMaximaAnual();
+  final maximaMensalTemp = processador.calcularMaximaMensal();
+  final minimaAnualTemp = processador.calcularMinimaAnual();
+  final minimaMensalTemp = processador.calcularMinimaMensal();
+  final mediaHoraTemp = processador.calcularMediaPorHorario();
 
   final impressora = ImpressaoRelatorio();
+  impressora.imprimirMediaAnual(mediaAnualTemp);
   impressora.imprimirMediaMensal(mediaMensalTemp);
+  impressora.imprimirMaximaAnual(maximaAnualTemp);
+  impressora.imprimirMaximaMensal(maximaMensalTemp);
+  impressora.imprimirMinimaAnual(minimaAnualTemp);
+  impressora.imprimirMinimaMensal(minimaMensalTemp);
+  impressora.imprimirMediaHora(mediaHoraTemp);
 
 }
