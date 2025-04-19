@@ -36,15 +36,15 @@ class ImpressaoRelatorio {
   }
 
   void imprimirMinimaMensal(List minima) {
-    print(">> TEMPERATURA MAXIMA MENSAL (SP)");
+    print(">> TEMPERATURA MINIMA MENSAL (SP)");
     for (int i = 0; i < 12; i++) {
       print("   MÊS ${i + 1}: ${('${minima[i]}°C').red}");
     }
   }
 
   void imprimirMediaHora(List media) {
-    print(">> TEMPERATURA MAXIMA MENSAL (SP)");
-    for (int i = 0; i < 12; i++) {
+    print(">> TEMPERATURA MÉDIA POR HORÁRIO (SP)");
+    for (int i = 0; i < 24; i++) {
       print("   HORA ${i + 1}: ${('${media[i]}°C').red}");
     }
   }
