@@ -1,69 +1,80 @@
-import 'package:yaansi/yaansi.dart';
+import 'package:clima_comparador/models/relatorio_temperatura_sp_model.dart';
+import 'package:clima_comparador/models/relatorio_temperatura_sc_model.dart';
 import 'package:clima_comparador/conversores/temperatura_converter.dart';
-
-var converter = TemperaturaConverter();
+import 'package:yaansi/yaansi.dart';
 
 class ImpressaoRelatorio {
+  final RelatorioTemperaturaModelSP dadoSP;
+  final RelatorioTemperaturaModelSC dadoSC;
+
+  ImpressaoRelatorio(this.dadoSP, this.dadoSC);
 
   void cabecalho() {
     print("============ Relatório Temperatura ============\n");
   }
 
-  void imprimirMediaAnual(double media) {
+  void imprimirMediaAnual() {
     cabecalho();
-    print(">> TEMPERATURA MÉDIA ANUAL (SP) ");
-    print("   2024: ${('$media °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(media)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(media)} K').blue}");
+    print(">> TEMPERATURA MÉDIA ANUAL (2024)");
+    print("   SP: ${('${dadoSP.mediaAnual} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.mediaAnual)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.mediaAnual)} K').blue}");
+    print("   SC: ${('${dadoSC.mediaAnual} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSC.mediaAnual)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSC.mediaAnual)} K').blue}");
   }
 
-  void imprimirMediaMensal(List media) {
+  void imprimirMediaMensal() {
     print(">> TEMPERATURA MÉDIA MENSAL (SP)");
     for (int i = 0; i < 12; i++) {
-      print("   MÊS ${i + 1}: ${('${media[i]} °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(media[i])} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(media[i])} K').blue}");
+      final valor = dadoSP.mediasMensais[i];
+      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
     }
   }
 
-  void imprimirMaximaAnual(double maxima) {
-    print(">> TEMPERATURA MAXIMA ANUAL (SP)");
-    print("   2024: ${('$maxima°C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(maxima)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(maxima)} K').blue}");
+  void imprimirMaximaAnual() {
+    print(">> TEMPERATURA MÁXIMA ANUAL (SP)");
+    print("   2024: ${('${dadoSP.maximaAnual} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.maximaAnual)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.maximaAnual)} K').blue}");
   }
 
-  void imprimirMaximaMensal(List maxima) {
-    print(">> TEMPERATURA MAXIMA MENSAL (SP)");
+  void imprimirMaximaMensal() {
+    print(">> TEMPERATURA MÁXIMA MENSAL (SP)");
     for (int i = 0; i < 12; i++) {
-      print("   MÊS ${i + 1}: ${('${maxima[i]} °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(maxima[i])} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(maxima[i])} K').blue}");
+      final valor = dadoSP.maximasMensais[i];
+      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
     }
   }
 
-  void imprimirMinimaAnual(double minima) {
-    print(">> TEMPERATURA MINIMA ANUAL (SP)");
-    print("   2024: ${('$minima °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(minima)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(minima)} K').blue}");
+  void imprimirMinimaAnual() {
+    print(">> TEMPERATURA MÍNIMA ANUAL (SP)");
+    print("   2024: ${('${dadoSP.minimaAnual} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.minimaAnual)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.minimaAnual)} K').blue}");
   }
 
-  void imprimirMinimaMensal(List minima) {
-    print(">> TEMPERATURA MINIMA MENSAL (SP)");
+  void imprimirMinimaMensal() {
+    print(">> TEMPERATURA MÍNIMA MENSAL (SP)");
     for (int i = 0; i < 12; i++) {
-      print("   MÊS ${i + 1}: ${('${minima[i]} °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(minima[i])} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(minima[i])} K').blue}");
+      final valor = dadoSP.minimasMensais[i];
+      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
     }
   }
 
-  void imprimirMediaHora(List media) {
+  void imprimirMediaHora() {
     print(">> TEMPERATURA MÉDIA POR HORÁRIO (SP)");
     for (int i = 0; i < 24; i++) {
-      print("   HORA ${i + 1}: ${('${media[i]} °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(media[i])} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(media[i])} K').blue}");
+      final valor = dadoSP.mediaHora[i];
+      print("   HORA $i: ${('$valor °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
     }
   }
 }
