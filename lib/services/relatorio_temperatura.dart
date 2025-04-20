@@ -19,7 +19,7 @@ class ProcessarDadosTemp {
     return mediasMensais;
   }
 
-  // Calcula a média de temperatura de todo o ano
+  // Calcula a media de temperatura registrada no ano inteiro
   double calcularMediaAnual() {
     final temperaturas = dados.map((e) => e.temperatura).toList();
     return double.parse(temperaturas.mean.toStringAsFixed(2));
