@@ -35,3 +35,16 @@ class RelatorioUmidadeModelSP {
     required this.minimasMensais,
   });
 }
+
+class RelatorioDirecaoModelSP {
+  final String maximaAnual;
+  final List maximaMensal;
+
+
+  RelatorioDirecaoModelSP({
+    required this.maximaAnual,
+    required this.maximaMensal,
+  });
+}
+
+// Esta parte do código é responsável armazenas os dados tratados dos arquivos CSV em um model.

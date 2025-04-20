@@ -9,6 +9,7 @@ class ImpressaoRelatorioTemp {
 
   ImpressaoRelatorioTemp(this.dadoSP, this.dadoSC);
 
+  // Chama todos os outros métodos de impressão
   void imprimirTudoTemp() {
     print("\n============ Relatório Temperatura ============");
     imprimirMediaAnual();
@@ -26,9 +27,8 @@ class ImpressaoRelatorioTemp {
     void imprimirPorEstado(String estado, double media) {
       print(
         "   ESTADO: $estado / ${('$media °C').red} / "
-            "${('${TemperaturaConverter.celsiusParaFahrenheit(media)} °F')
-            .yellow} / "
-            "${('${TemperaturaConverter.celsiusParaKelvin(media)} K').blue}",
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(media)} °F').yellow} / "
+        "${('${TemperaturaConverter.celsiusParaKelvin(media)} K').blue}",
       );
     }
 
@@ -44,14 +44,9 @@ class ImpressaoRelatorioTemp {
       for (int i = 0; i < 12; i++) {
         final valor = medias[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor
-              .toStringAsFixed(2)} °C').red} / "
-              "${('${TemperaturaConverter
-              .celsiusParaFahrenheit(valor)
-              .toStringAsFixed(2)} °F').yellow} / "
-              "${('${TemperaturaConverter
-              .celsiusParaKelvin(valor)
-              .toStringAsFixed(2)} K').blue}",
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} / "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} / "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
         );
       }
     }
@@ -66,12 +61,8 @@ class ImpressaoRelatorioTemp {
     void imprimirPorEstado(String estado, double maxima) {
       print(
         "   ESTADO: $estado / ${('${maxima.toStringAsFixed(2)} °C').red} / "
-            "${('${TemperaturaConverter
-            .celsiusParaFahrenheit(maxima)
-            .toStringAsFixed(2)} °F').yellow} / "
-            "${('${TemperaturaConverter
-            .celsiusParaKelvin(maxima)
-            .toStringAsFixed(2)} K').blue}",
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(maxima).toStringAsFixed(2)} °F').yellow} / "
+        "${('${TemperaturaConverter.celsiusParaKelvin(maxima).toStringAsFixed(2)} K').blue}",
       );
     }
 
@@ -87,14 +78,9 @@ class ImpressaoRelatorioTemp {
       for (int i = 0; i < 12; i++) {
         final valor = maxima[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor
-              .toStringAsFixed(2)} °C').red} / "
-              "${('${TemperaturaConverter
-              .celsiusParaFahrenheit(valor)
-              .toStringAsFixed(2)} °F').yellow} / "
-              "${('${TemperaturaConverter
-              .celsiusParaKelvin(valor)
-              .toStringAsFixed(2)} K').blue}",
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} / "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} / "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
         );
       }
     }
@@ -109,12 +95,8 @@ class ImpressaoRelatorioTemp {
     void imprimirPorEstado(String estado, double minima) {
       print(
         "   ESTADO: $estado / ${('${minima..toStringAsFixed(2)} °C').red} / "
-            "${('${TemperaturaConverter
-            .celsiusParaFahrenheit(minima)
-            .toStringAsFixed(2)} °F').yellow} / "
-            "${('${TemperaturaConverter
-            .celsiusParaKelvin(minima)
-            .toStringAsFixed(2)} K').blue}",
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(minima).toStringAsFixed(2)} °F').yellow} / "
+        "${('${TemperaturaConverter.celsiusParaKelvin(minima).toStringAsFixed(2)} K').blue}",
       );
     }
 
@@ -130,14 +112,9 @@ class ImpressaoRelatorioTemp {
       for (int i = 0; i < 12; i++) {
         final valor = minima[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor
-              .toStringAsFixed(2)} °C').red} / "
-              "${('${TemperaturaConverter
-              .celsiusParaFahrenheit(valor)
-              .toStringAsFixed(2)} °F').yellow} / "
-              "${('${TemperaturaConverter
-              .celsiusParaKelvin(valor)
-              .toStringAsFixed(2)} K').blue}",
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} / "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} / "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
         );
       }
     }
@@ -154,14 +131,9 @@ class ImpressaoRelatorioTemp {
       for (int i = 0; i < 24; i++) {
         final valor = hora[i];
         print(
-          "     HORA ${(i + 1).toString().padLeft(2, "0")}: ${('${valor
-              .toStringAsFixed(2)} °C').red} / "
-              "${('${TemperaturaConverter
-              .celsiusParaFahrenheit(valor)
-              .toStringAsFixed(2)} °F').yellow} / "
-              "${('${TemperaturaConverter
-              .celsiusParaKelvin(valor)
-              .toStringAsFixed(2)} K').blue}",
+          "     HORA ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} / "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} / "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
         );
       }
     }
@@ -169,7 +141,6 @@ class ImpressaoRelatorioTemp {
     imprimirPorEstado("SP", dadoSP.mediaHora);
     imprimirPorEstado("SC", dadoSC.mediaHora);
   }
-
 }
 
 class ImpressaoRelatorioUmi {
@@ -178,6 +149,7 @@ class ImpressaoRelatorioUmi {
 
   ImpressaoRelatorioUmi(this.dadoSP, this.dadoSC);
 
+  // Chama todos os outros métodos de impressão
   void imprimirTudo() {
     print("\n============ Relatório Umidade ============");
     imprimirMediaAnual();
@@ -207,7 +179,8 @@ class ImpressaoRelatorioUmi {
       for (int i = 0; i < 12; i++) {
         final valor = medias[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').green}");
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').green}",
+        );
       }
     }
 
@@ -216,11 +189,10 @@ class ImpressaoRelatorioUmi {
   }
 
   void imprimirMaximaAnual() {
-    print("\n>> UMIDADO DO AR MÁXIMA ANUAL (2024)");
+    print("\n>> UMIDADE DO AR MÁXIMA ANUAL (2024)");
 
     void imprimirPorEstado(String estado, double maxima) {
-      print(
-        "   ESTADO: $estado / ${('$maxima KG/KG').red}");
+      print("   ESTADO: $estado / ${('$maxima KG/KG').red}");
     }
 
     imprimirPorEstado("SP", dadoSP.maximaAnual);
@@ -235,7 +207,8 @@ class ImpressaoRelatorioUmi {
       for (int i = 0; i < 12; i++) {
         final valor = maxima[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').red}");
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').red}",
+        );
       }
     }
 
@@ -247,8 +220,7 @@ class ImpressaoRelatorioUmi {
     print("\n>> TEMPERATURA MÍNIMA ANUAL (2024)");
 
     void imprimirPorEstado(String estado, double minima) {
-      print(
-        "   ESTADO: $estado / ${('$minima KG/KG').blue} ");
+      print("   ESTADO: $estado / ${('$minima KG/KG').blue} ");
     }
 
     imprimirPorEstado("SP", dadoSP.minimaAnual);
@@ -263,11 +235,54 @@ class ImpressaoRelatorioUmi {
       for (int i = 0; i < 12; i++) {
         final valor = minima[i];
         print(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').blue}");
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor KG/KG').blue}",
+        );
       }
     }
 
     imprimirPorEstado("SP", dadoSP.minimasMensais);
     imprimirPorEstado("SC", dadoSC.minimasMensais);
+  }
+}
+
+class ImpressaoRelatorioDir {
+  final RelatorioDirecaoModelSP dadoSP;
+  final RelatorioDirecaoModelSC dadoSC;
+
+  ImpressaoRelatorioDir(this.dadoSP, this.dadoSC);
+
+  // Chama todos os outros métodos de impressão
+  void imprimirTudo() {
+    print("\n============ Relatório Direção do Vento ============");
+    imprimirMaiorFrequenciaAnual();
+    imprimirMaiorFrequenciaMensal();
+  }
+
+  void imprimirMaiorFrequenciaAnual() {
+    print("\n>> DIREÇÃO DO VENTO MAIOR FREQUÊNCIA ANUAL (2024)");
+
+    void imprimirPorEstado(String estado, String maxima) {
+      print("   ESTADO: $estado / ${(maxima).yellow}");
+    }
+
+    imprimirPorEstado("SP", dadoSP.maximaAnual);
+    imprimirPorEstado("SC", dadoSC.maximaAnual);
+  }
+
+  void imprimirMaiorFrequenciaMensal() {
+    print("\n>> DIREÇÃO DO VENTO MAIOR FREQUÊNCIA MENSAL (2024)");
+
+    void imprimirPorEstado(String estado, List maxima) {
+      print("   ESTADO: $estado");
+      for (int i = 0; i < 12; i++) {
+        final valor = maxima[i];
+        print(
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('$valor').yellow}",
+        );
+      }
+    }
+
+    imprimirPorEstado('SP', dadoSP.maximaMensal);
+    imprimirPorEstado('SC', dadoSC.maximaMensal);
   }
 }
