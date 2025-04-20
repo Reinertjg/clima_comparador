@@ -1,4 +1,4 @@
-import 'package:clima_comparador/models/dados_climatico_sp.dart';
+import 'package:clima_comparador/models/dados_climatico_model.dart';
 import 'package:statistics/statistics.dart';
 
 class ProcessarDadosTemp {
@@ -6,6 +6,7 @@ class ProcessarDadosTemp {
 
   ProcessarDadosTemp(this.dados);
 
+  // Calcula a média de temperatura para cada mês do ano
   List calcularMediaMensal() {
     List<double> mediasMensais = [];
 
@@ -18,11 +19,13 @@ class ProcessarDadosTemp {
     return mediasMensais;
   }
 
+  // Calcula a média de temperatura de todo o ano
   double calcularMediaAnual() {
     final temperaturas = dados.map((e) => e.temperatura).toList();
     return double.parse(temperaturas.mean.toStringAsFixed(2));
   }
 
+  // Calcula a temperatura máxima registrada em cada mês
   List calcularMaximaMensal() {
     List<double> maximaTempMensal = [];
 
@@ -35,6 +38,7 @@ class ProcessarDadosTemp {
     return maximaTempMensal;
   }
 
+  // Calcula a temperatura mínima registrada em cada mês
   List calcularMinimaMensal() {
     List<double> minimaTempMensal = [];
 
@@ -47,18 +51,21 @@ class ProcessarDadosTemp {
     return minimaTempMensal;
   }
 
+  // Retorna a temperatura máxima registrada no ano inteiro
   double calcularMaximaAnual() {
     var temperaturas = dados.map((e) => e.temperatura).toList();
     var tempStatistics = temperaturas.statistics;
     return tempStatistics.max;
   }
 
+  // Retorna a temperatura mínima registrada no ano inteiro
   double calcularMinimaAnual() {
     var temperaturas = dados.map((e) => e.temperatura).toList();
     var tempStatistics = temperaturas.statistics;
     return tempStatistics.min;
   }
 
+  // Calcula a média de temperatura por hora ao longo do dia (de 1h até 24h)
   List<double> calcularMediaPorHorario() {
     List<double> mediaPorHora = [];
     for (int hora = 1; hora <= 24; hora++) {
