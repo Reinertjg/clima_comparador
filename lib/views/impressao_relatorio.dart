@@ -9,72 +9,139 @@ class ImpressaoRelatorio {
 
   ImpressaoRelatorio(this.dadoSP, this.dadoSC);
 
+  void imprimirTudoTemp() {
+    cabecalho();
+    imprimirMediaAnual();
+    imprimirMediaMensal();
+    imprimirMaximaAnual();
+    imprimirMaximaMensal();
+    imprimirMinimaAnual();
+    imprimirMinimaMensal();
+    imprimirMediaHora();
+  }
+
   void cabecalho() {
     print("============ Relatório Temperatura ============\n");
   }
 
   void imprimirMediaAnual() {
-    cabecalho();
     print(">> TEMPERATURA MÉDIA ANUAL (2024)");
-    print("   SP: ${('${dadoSP.mediaAnual} °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.mediaAnual)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.mediaAnual)} K').blue}");
-    print("   SC: ${('${dadoSC.mediaAnual} °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSC.mediaAnual)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSC.mediaAnual)} K').blue}");
+
+    void imprimirPorEstado(String estado, double media) {
+      print(
+        "   ESTADO: $estado - ${('$media °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(media)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(media)} K').blue}",
+      );
+    }
+
+    imprimirPorEstado("SP", dadoSP.mediaAnual);
+    imprimirPorEstado("SC", dadoSC.mediaAnual);
   }
 
   void imprimirMediaMensal() {
-    print(">> TEMPERATURA MÉDIA MENSAL (SP)");
-    for (int i = 0; i < 12; i++) {
-      final valor = dadoSP.mediasMensais[i];
-      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
+    print(">> TEMPERATURA MÉDIA MENSAL POR ESTADO (2024)");
+
+    void imprimirPorEstado(String estado, List medias) {
+      print("   ESTADO: $estado");
+      for (int i = 0; i < 12; i++) {
+        final valor = medias[i];
+        print(
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
+        );
+      }
     }
+
+    imprimirPorEstado('SP', dadoSP.mediasMensais);
+    imprimirPorEstado('SC', dadoSC.mediasMensais);
   }
 
   void imprimirMaximaAnual() {
-    print(">> TEMPERATURA MÁXIMA ANUAL (SP)");
-    print("   2024: ${('${dadoSP.maximaAnual} °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.maximaAnual)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.maximaAnual)} K').blue}");
+    print(">> TEMPERATURA MÁXIMA ANUAL (2024)");
+
+    void imprimirPorEstado(String estado, double maxima) {
+      print(
+        "   ESTADO: $estado - ${('${maxima.toStringAsFixed(2)} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(maxima).toStringAsFixed(2)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(maxima).toStringAsFixed(2)} K').blue}",
+      );
+    }
+
+    imprimirPorEstado("SP", dadoSP.maximaAnual);
+    imprimirPorEstado("SC", dadoSC.maximaAnual);
   }
 
   void imprimirMaximaMensal() {
-    print(">> TEMPERATURA MÁXIMA MENSAL (SP)");
-    for (int i = 0; i < 12; i++) {
-      final valor = dadoSP.maximasMensais[i];
-      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
+    print(">> TEMPERATURA MÁXIMA MENSAL (2024)");
+
+    void imprimirPorEstado(String estado, List maxima) {
+      print("   ESTADO: $estado");
+      for (int i = 0; i < 12; i++) {
+        final valor = maxima[i];
+        print(
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
+        );
+      }
     }
+
+    imprimirPorEstado("SP", dadoSP.maximasMensais);
+    imprimirPorEstado("SC", dadoSC.maximasMensais);
   }
 
   void imprimirMinimaAnual() {
-    print(">> TEMPERATURA MÍNIMA ANUAL (SP)");
-    print("   2024: ${('${dadoSP.minimaAnual} °C').red} - "
-        "${('${TemperaturaConverter.celsiusParaFahrenheit(dadoSP.minimaAnual)} °F').yellow} - "
-        "${('${TemperaturaConverter.celsiusParaKelvin(dadoSP.minimaAnual)} K').blue}");
+    print(">> TEMPERATURA MÍNIMA ANUAL (2024)");
+
+    void imprimirPorEstado(String estado, double minima) {
+      print(
+        "   ESTADO: $estado - ${('${minima..toStringAsFixed(2)} °C').red} - "
+        "${('${TemperaturaConverter.celsiusParaFahrenheit(minima).toStringAsFixed(2)} °F').yellow} - "
+        "${('${TemperaturaConverter.celsiusParaKelvin(minima).toStringAsFixed(2)} K').blue}",
+      );
+    }
+
+    imprimirPorEstado("SP", dadoSP.minimaAnual);
+    imprimirPorEstado("SC", dadoSC.minimaAnual);
   }
 
   void imprimirMinimaMensal() {
-    print(">> TEMPERATURA MÍNIMA MENSAL (SP)");
-    for (int i = 0; i < 12; i++) {
-      final valor = dadoSP.minimasMensais[i];
-      print("   MÊS ${i + 1}: ${('$valor °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
+    print(">> TEMPERATURA MÍNIMA MENSAL (2024)");
+
+    void imprimirPorEstado(String estado, List minima) {
+      print("   ESTADO: $estado");
+      for (int i = 0; i < 12; i++) {
+        final valor = minima[i];
+        print(
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
+        );
+      }
     }
+
+    imprimirPorEstado("SP", dadoSP.minimasMensais);
+    imprimirPorEstado("SC", dadoSC.minimasMensais);
   }
 
   void imprimirMediaHora() {
     print(">> TEMPERATURA MÉDIA POR HORÁRIO (SP)");
-    for (int i = 0; i < 24; i++) {
-      final valor = dadoSP.mediaHora[i];
-      print("   HORA $i: ${('$valor °C').red} - "
-          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor)} °F').yellow} - "
-          "${('${TemperaturaConverter.celsiusParaKelvin(valor)} K').blue}");
+
+    void imprimirPorEstado(String estado, List hora) {
+      print("   ESTADO: $estado");
+      for (int i = 0; i < 24; i++) {
+        final valor = hora[i];
+        print(
+          "     HORA ${(i + 1).toString().padLeft(2, "0")}: ${('${valor.toStringAsFixed(2)} °C').red} - "
+          "${('${TemperaturaConverter.celsiusParaFahrenheit(valor).toStringAsFixed(2)} °F').yellow} - "
+          "${('${TemperaturaConverter.celsiusParaKelvin(valor).toStringAsFixed(2)} K').blue}",
+        );
+      }
     }
+
+    imprimirPorEstado("SP", dadoSP.mediaHora);
+    imprimirPorEstado("SC", dadoSC.mediaHora);
   }
 }

@@ -48,12 +48,6 @@ void main() async {
   );
 
   final impressora = ImpressaoRelatorio(relatorio, relatorioSC);
-  impressora.imprimirMediaAnual();
-  impressora.imprimirMediaMensal();
-  impressora.imprimirMaximaAnual();
-  impressora.imprimirMaximaMensal();
-  impressora.imprimirMinimaAnual();
-  impressora.imprimirMinimaMensal();
-  impressora.imprimirMediaHora();
+  impressora.imprimirTudoTemp();
 
 }
