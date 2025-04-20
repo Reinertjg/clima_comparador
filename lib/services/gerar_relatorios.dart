@@ -5,8 +5,10 @@ import 'package:clima_comparador/services/relatorio_direcao_vento.dart';
 import 'package:clima_comparador/services/relatorio_temperatura.dart';
 import 'package:clima_comparador/services/relatorio_umidade.dart';
 import 'package:clima_comparador/views/impressao_relatorio.dart';
+import 'package:clima_comparador/views/impressao_relatorio_arquivo.dart';
 
 import '../models/dados_climatico_model.dart';
+import 'arquivo_service.dart';
 
 // Função para gerar os relatórios de temperatura para os dados de São Paulo e Santa Catarina
 void gerarRelatorios(List<DadoClimatico> dadosSP, List<DadoClimatico> dadosSC) {
@@ -34,9 +36,15 @@ void gerarRelatorios(List<DadoClimatico> dadosSP, List<DadoClimatico> dadosSC) {
       mediaHora: processadorTempSC.calcularMediaPorHorario(),
     );
 
-    // Impressões dos Relatórios
+    // Impressões dos Relatórios Terminal
     final impressoraTemp = ImpressaoRelatorioTemp(relatorioSP, relatorioSC);
     impressoraTemp.imprimirTudoTemp();
+
+    // Impressões dos Relatórios Arquivo
+    final impressoraTempArquivo = ImpressaoRelatorioTempArquivo(relatorioSP, relatorioSC);
+    var conteudo = impressoraTempArquivo.gerarRelatorioTemperatura();
+    // Envia o conteúdo para a funcao criarESalvarArquivo
+    ArquivoService.criarESalvarArquivo("RelatorioTemperatura.txt", conteudo);
   } catch (e) {
     print('Erro ao gerar relatórios de temperatura: $e');
   }
@@ -68,6 +76,10 @@ void gerarRelatoriosUmidade(List<DadoClimatico> dadosSP, List<DadoClimatico> dad
     // Impressões dos Relatórios
     final impressoraUmi = ImpressaoRelatorioUmi(relatorioUmiSP, relatorioUmiSC);
     impressoraUmi.imprimirTudo();
+    final impressoraUmiArquivo = ImpressaoRelatorioUmiArquivo(relatorioUmiSP, relatorioUmiSC);
+    final conteudo = impressoraUmiArquivo.gerarRelatorioUmidade();
+    ArquivoService.criarESalvarArquivo("RelatorioUmidadeDoAr.txt", conteudo);
+
   } catch (e) {
     print('Erro ao gerar relatórios de Umidade do Ar: $e');
   }
@@ -91,6 +103,9 @@ void gerarRelatoriosDirecao(List<DadoClimatico> dadosSP, List<DadoClimatico> dad
     // Impressões dos Relatórios
     final impressoraDir = ImpressaoRelatorioDir(relatorioDirSP, relatorioDirSC);
     impressoraDir.imprimirTudo();
+    final impressoraDirArquivo = ImpressaoRelatorioDirArquivo(relatorioDirSP, relatorioDirSC);
+    final conteudo = impressoraDirArquivo.gerarRelatorioDirecao();
+    ArquivoService.criarESalvarArquivo("RelatorioDirecaoDoVento.txt", conteudo);
   } catch (e) {
     print('Erro ao gerar relatórios de Direção do Vento: $e');
   }
