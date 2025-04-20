@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:clima_comparador/services/carregar_dados.dart';
 import 'package:clima_comparador/views/menu.dart';

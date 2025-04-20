@@ -1,7 +1,6 @@
 import 'package:clima_comparador/models/relatorio_sp_model.dart';
 import 'package:clima_comparador/models/relatorio_sc_model.dart';
 import 'package:clima_comparador/conversores/converter_dados.dart';
-import 'package:yaansi/yaansi.dart';
 
 class ImpressaoRelatorioTempArquivo {
   final RelatorioTemperaturaModelSP dadoSP;
@@ -275,7 +274,7 @@ class ImpressaoRelatorioDirArquivo {
     buffer.writeln("\n>> DIREÇÃO DO VENTO MAIOR FREQUÊNCIA ANUAL (2024)");
 
     void imprimirPorEstado(String estado, String maxima) {
-      buffer.writeln("   ESTADO: $estado / ${maxima}");
+      buffer.writeln("   ESTADO: $estado / $maxima");
     }
 
     imprimirPorEstado("SP", dadoSP.maximaAnual);
@@ -290,7 +289,7 @@ class ImpressaoRelatorioDirArquivo {
       for (int i = 0; i < 12; i++) {
         final valor = maxima[i];
         buffer.writeln(
-          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: ${valor}",
+          "     MÊS ${(i + 1).toString().padLeft(2, "0")}: $valor",
         );
       }
     }
